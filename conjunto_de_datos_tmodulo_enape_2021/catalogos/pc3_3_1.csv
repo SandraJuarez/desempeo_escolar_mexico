@@ -1,0 +1,13 @@
+﻿cve,descrip
+"00","Ninguno"
+"01","Preescolar"
+"02","Primaria"
+"03","Secundaria"
+"04","Profesional técnico (carrera técnica con secundaria terminada)"
+"05","Preparatoria o bachillerato general"
+"06","Bachillerato tecnológico"
+"07","Técnico Superior Universitario (carrera técnica con bachillerato terminado)"
+"08","Licenciatura o profesional"
+"09","Especialidad"
+"10","Maestría"
+"11","Doctorado"

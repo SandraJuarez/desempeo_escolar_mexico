@@ -1,0 +1,3 @@
+﻿cve,descrip
+"1","Si A3.2 distinto de B3.3, continúe"
+"2","De lo contrario, pase a B3.5"

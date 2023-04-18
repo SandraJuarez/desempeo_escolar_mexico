@@ -1,0 +1,27 @@
+﻿Identifier: MEX-INEGI.ESD3.04-ENAPE-2021
+
+Title: Encuesta Nacional sobre Acceso y Permanencia en la Educación (ENAPE) 2021.
+
+Description: La ENAPE 2021 permitirá generar información estadística sobre el acceso y permanencia de la población de 0 a 29 años en el Sistema Educativo Nacional (SEN), partiendo de la identificación de la población que estuvo inscrita en el anterior ciclo escolar (2020-2021), así como aquella inscrita en el ciclo escolar actual (2021-2022). Asimismo, identificar a la población que no estuvo inscrita en el anterior ni en el actual ciclo escolar, así como aquéllas que nunca han asistido a la escuela, las razones por las que no lo hicieron, entre otra información relevante sobre el tema educativo en el país.
+
+Modified: 2022-11-29
+
+Publisher: Instituto Nacional de Estadística y Geografía, INEGI
+
+Mbox: atencion.usuarios@inegi.org.mx
+
+License: https://www.inegi.org.mx/inegi/terminos.html
+
+DataDictionary: 
+
+Keyword: "Asistencia escolar", "Ciclo escolar", "Dejar de trabajar", "Económicas", "Educación", "Encuesta", "Escolaridad", "Hogar", "Inscritos", "Población"
+
+ContactPoint: Mtro. J. Armando Aguiar Rodríguez, 800 111 4634
+
+Temporal: 2021-11-16-2021-12-17
+
+Spatial: Estados Unidos Mexicanos
+
+AccrualPeriodicity: Única
+
+Distribution: https://www.inegi.org.mx/programas/enape/2021/

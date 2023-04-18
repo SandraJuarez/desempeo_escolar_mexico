@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/399805191118338855/2148be4b53804e89930bb8d4a4e8f32c/artifacts
+deleted_time: 1681801601650
+end_time: 1681801222911
+entry_point_name: ''
+experiment_id: '399805191118338855'
+lifecycle_stage: deleted
+run_id: 2148be4b53804e89930bb8d4a4e8f32c
+run_name: multilayer
+run_uuid: 2148be4b53804e89930bb8d4a4e8f32c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1681801222870
+status: 4
+tags: []
+user_id: '52333'
