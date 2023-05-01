@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/269215230178337736/e101695f69cc43a4a2701e7d5b8fef59/artifacts
+end_time: 1682934549636
+entry_point_name: ''
+experiment_id: '269215230178337736'
+lifecycle_stage: active
+run_id: e101695f69cc43a4a2701e7d5b8fef59
+run_name: logistic
+run_uuid: e101695f69cc43a4a2701e7d5b8fef59
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1682934549456
+status: 3
+tags: []
+user_id: '52333'

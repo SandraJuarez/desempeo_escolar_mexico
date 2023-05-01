@@ -8,6 +8,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy
+import metrics
 import mlflow
 
 # Switch off the cache 
@@ -175,8 +176,22 @@ class Logistic_Regression():
             mlflow.log_param('lamda',lamda)
             precision=(TP/(TP+FP))
             precisionv=(TPv/(TPv+FPv))
+            accuracy=metrics.accuracy(y,y_hat)
+            recall=metrics.recall(y,y_hat)
+            precision=metrics.precision(y,y_hat)
+            mlflow.log_metric('accuracy',accuracy)
             mlflow.log_metric('precision',precision)
-            mlflow.log_metric('precision_val',precisionv)
+            mlflow.log_metric('recall',recall)
+            mlflow.log_metric('recall',accuracy)
+
+            accuracyv=metrics.accuracy(y_val,y_hat_val)
+            recallv=metrics.recall(y_val,y_hat_val)
+            precisionv=metrics.precision(y_val,y_hat_val)
+            print('EL ACCURACY de val ES',accuracyv)
+            mlflow.log_metric('accuracy validation',accuracyv)
+            mlflow.log_metric('precision validation',precisionv)
+            mlflow.log_metric('recall validation',recallv)
+            mlflow.log_metric('recall validation',accuracyv)
         return (TP/(TP+FP)).tolist()
     
     def classic_model(self, W:jnp, X:jnp, Y_hot:jnp, Y:jnp,alpha:float, tol, lamda)->jnp:

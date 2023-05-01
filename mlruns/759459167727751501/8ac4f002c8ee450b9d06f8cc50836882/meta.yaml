@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/759459167727751501/8ac4f002c8ee450b9d06f8cc50836882/artifacts
+deleted_time: 1682903211979
+end_time: 1682854283232
+entry_point_name: ''
+experiment_id: '759459167727751501'
+lifecycle_stage: deleted
+run_id: 8ac4f002c8ee450b9d06f8cc50836882
+run_name: Ada_mlp
+run_uuid: 8ac4f002c8ee450b9d06f8cc50836882
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1682854253828
+status: 3
+tags: []
+user_id: '52333'

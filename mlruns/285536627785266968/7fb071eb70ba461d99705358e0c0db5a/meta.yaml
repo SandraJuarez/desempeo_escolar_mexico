@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/285536627785266968/7fb071eb70ba461d99705358e0c0db5a/artifacts
+deleted_time: 1682833813155
 end_time: 1681708106951
 entry_point_name: ''
 experiment_id: '285536627785266968'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: 7fb071eb70ba461d99705358e0c0db5a
 run_name: Ridge
 run_uuid: 7fb071eb70ba461d99705358e0c0db5a

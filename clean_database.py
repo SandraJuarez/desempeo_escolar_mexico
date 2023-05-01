@@ -19,6 +19,9 @@ def Clean_Data():
     dfd=dfd[dfd.PC3_6.isin(values_c)==False]
     #dfd=dfd[dfd.FILTRO_C!=1] #Quitamos a los que no estuvieron inscritos en el anterior ni en el siguiente
     dfd=dfd[dfd.PA3_6!=4]
+    dfd[dfd==9]=0
+    dfd[dfd==99]=0
+    dfd[dfd==98]=0
 
     dfd.drop(columns=['PA3_3_MODMAT','PB3_5_MODMAT','FOLIO'],inplace=True)
     dfd['FILTRO_A']=dfd['FILTRO_A'].fillna(0) #SE CAMBIÓ DE ESCUELA
@@ -369,6 +372,7 @@ def Clean_Data():
     d1= d1.dropna(thresh=d1.shape[1]-5)
     d2= d2.dropna(thresh=d2.shape[1]-5)
     d1=d1.fillna(0)
+    d2=d2.iloc[:6239]
     d2=d2.fillna(0)
     print(d1.shape[0],d2.shape[0])
 
@@ -384,11 +388,12 @@ def Clean_Data():
     
     dfd.to_csv('limpios.csv')
     datos=dfd[dfd.columns[0:]].to_numpy()
+    header=list(dfd.columns)
     x=dfd[dfd.columns[1:]].to_numpy()
     y=dfd[dfd.columns[0]].to_numpy
     datos_bajo = d1[d1.columns[0:]].to_numpy()
     
-    return datos_bajo,datos
+    return datos_bajo,datos,header
 
 if __name__=="__MAIN__":
     Clean_Data()

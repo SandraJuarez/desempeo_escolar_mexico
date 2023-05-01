@@ -162,15 +162,17 @@ class Linear_Model():
         experiment = mlflow.get_experiment_by_name(experiment_name)
         experiment_id = experiment.experiment_id
         with mlflow.start_run(experiment_id=experiment_id,run_name=run_name):
+            features=X.shape[0]
+            mlflow.log_param('features',features)
             mlflow.log_param('learning_rate',lr)
             mlflow.log_param('n_steps',n_steps)
             print('este es lr')
             theta=self.gradient_descent(theta,X,y,n_steps,lr)
             print('este es theta',theta)
             y_hat=self.estimate_grsl(X, theta)
-            print('este es y_hat de training',y_hat)
+            print('este es y_hat de training',y_hat.shape)
             y_hat_val=self.estimate_grsl(X_val,theta)
-            print('este es y_hat de val',y_hat_val)
+            print('este es y_hat de val',y_hat_val.shape)
             precision,accuracy=metrics.precision(y,y_hat),metrics.accuracy(y,y_hat)
             
             precision_val,accuracy_val=metrics.precision(y_val,y_hat_val),metrics.accuracy(y_val,y_hat_val)
@@ -180,7 +182,21 @@ class Linear_Model():
             mlflow.log_metric('recall_val',accuracy_val)
             print('precision y recall',precision,accuracy)
         return y_hat,y_hat_val#,precision,recall,precision_val,recall_val
-
+    def model_boost(self, theta, X, y, lr,n_steps,X_val,y_val):
+        
+        
+        theta=self.gradient_descent(theta,X,y,n_steps,lr)
+        #print('este es theta',theta)
+        y_hat=self.estimate_grsl(X, theta)
+        #print('este es y_hat de training',y_hat.shape)
+        y_hat_val=self.estimate_grsl(X_val,theta)
+        #print('este es y_hat de val',y_hat_val.shape)
+        precision,accuracy=metrics.precision(y,y_hat),metrics.accuracy(y,y_hat)
+        
+        precision_val,accuracy_val=metrics.precision(y_val,y_hat_val),metrics.accuracy(y_val,y_hat_val)
+       
+        #print('precision y recall',precision,accuracy)
+        return y_hat,y_hat_val#,precision,recall,precision_val,recall_val
         
     ######################################################################################################
     #########vamos a hacer la implementación de la regularización de Ridge##################################
@@ -217,23 +233,22 @@ class Linear_Model():
         experiment_id = experiment.experiment_id
         X_e = np.hstack([X, np.ones((samples,1))])
         samples2=X_v.shape[0]
-        X_v= np.hstack([X_v, np.ones((samples,1))])
-        l=0.02
-        max_steps=2
+        X_v= np.hstack([X_v, np.ones((X_v.shape[0],1))])
+        
         precision_list=[]
         accuracy_list=[]
         precision_list_v=[]
         accuracy_list_v=[]
         lbda=[]
-        print('holaa')
+        
         with mlflow.start_run(experiment_id= experiment_id, run_name=run_name) as run:
             mlflow.log_param('lambda',l)
             wR = self.generate_canonicalRidge_estimator(X_e, y_est,l)
             y_hatR = self.estimate_cannonicalRidge(X_e, wR)
             y_hatR_v = self.estimate_cannonicalRidge(X_e, wR)
             precision,accuracy=self.precision(y_est,y_hatR),self.accuracy(y_est,y_hatR)
-            mlflow.log_metric('precision_list',precision)
-            mlflow.log_metric('recall_list',accuracy)
+            mlflow.log_metric('precision',precision)
+            mlflow.log_metric('recall',accuracy)
             precision_v,accuracy_v=metrics.precision(y_est,y_hatR),metrics.accuracy(y_est_v,y_hatR_v)
             mlflow.log_metric('precision_val',precision_v)
             mlflow.log_metric('accuracy_val',accuracy_v)
@@ -243,25 +258,24 @@ class Linear_Model():
             accuracy_list_v.append(accuracy_v)
             
 
-            '''
-            for i in range(max_steps):
-                l=l+incremento
-                lbda.append(l)
-                mlflow.log_param('lambda',l)
-                wR = self.generate_canonicalRidge_estimator(X_e, y_est,l)
-                y_hatR = self.estimate_cannonicalRidge(X_e, wR)
-                y_hatR_v = self.estimate_cannonicalRidge(X_e, wR)
-                precision,accuracy=self.precision(y_est,y_hatR),self.accuracy(y_est,y_hatR)
-                mlflow.log_metric('precision_list',precision)
-                mlflow.log_metric('recall_list',accuracy)
-                precision_v,accuracy_v=self.precision(y_est,y_hatR),self.accuracy(y_est_v,y_hatR_v)
-                mlflow.log_metric('precision_val',precision_v)
-                mlflow.log_metric('accuracy_val',accuracy_v)
-                precision_list.append(precision)
-                accuracy_list.append(accuracy)
-                precision_list_v.append(precision_v)
-                accuracy_list_v.append(accuracy_v)
-            '''
+            
+            
+            '''''
+            mlflow.log_param('lambda',l)
+            wR = self.generate_canonicalRidge_estimator(X_e, y_est,l)
+            y_hatR = self.estimate_cannonicalRidge(X_e, wR)
+            y_hatR_v = self.estimate_cannonicalRidge(X_e, wR)
+            precision,accuracy=self.precision(y_est,y_hatR),self.accuracy(y_est,y_hatR)
+            mlflow.log_metric('precision_list',precision)
+            mlflow.log_metric('recall_list',accuracy)
+            precision_v,accuracy_v=self.precision(y_est,y_hatR),self.accuracy(y_est_v,y_hatR_v)
+            mlflow.log_metric('precision_val',precision_v)
+            mlflow.log_metric('accuracy_val',accuracy_v)
+            precision_list.append(precision)
+            accuracy_list.append(accuracy)
+            precision_list_v.append(precision_v)
+            accuracy_list_v.append(accuracy_v)
+           '''
             
             
             

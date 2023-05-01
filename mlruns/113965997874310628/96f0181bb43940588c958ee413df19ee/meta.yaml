@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/113965997874310628/96f0181bb43940588c958ee413df19ee/artifacts
+end_time: 1682926753447
+entry_point_name: ''
+experiment_id: '113965997874310628'
+lifecycle_stage: active
+run_id: 96f0181bb43940588c958ee413df19ee
+run_name: Mixture
+run_uuid: 96f0181bb43940588c958ee413df19ee
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1682926752874
+status: 3
+tags: []
+user_id: '52333'

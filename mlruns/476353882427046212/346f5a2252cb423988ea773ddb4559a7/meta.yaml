@@ -1,0 +1,16 @@
+artifact_uri: mlflow-artifacts:/476353882427046212/346f5a2252cb423988ea773ddb4559a7/artifacts
+deleted_time: 1682833750209
+end_time: 1682766892771
+entry_point_name: ''
+experiment_id: '476353882427046212'
+lifecycle_stage: deleted
+run_id: 346f5a2252cb423988ea773ddb4559a7
+run_name: lineal_ada
+run_uuid: 346f5a2252cb423988ea773ddb4559a7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1682766891937
+status: 3
+tags: []
+user_id: '52333'

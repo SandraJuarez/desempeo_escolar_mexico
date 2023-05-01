@@ -1,8 +1,9 @@
 artifact_uri: mlflow-artifacts:/269215230178337736/ef615558b7bb4109bd91a4f4f27a715b/artifacts
+deleted_time: 1682594070046
 end_time: 1681717155064
 entry_point_name: ''
 experiment_id: '269215230178337736'
-lifecycle_stage: active
+lifecycle_stage: deleted
 run_id: ef615558b7bb4109bd91a4f4f27a715b
 run_name: logistic
 run_uuid: ef615558b7bb4109bd91a4f4f27a715b

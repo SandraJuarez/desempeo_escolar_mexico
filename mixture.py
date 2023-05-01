@@ -6,6 +6,7 @@ import metrics
 import math as mt
 import mlflow
 import importlib
+import mlflow
 importlib.reload(metrics)
 
 
@@ -20,7 +21,7 @@ def get_gaus(features,samples,sigma,mu,x):
     Es necesario llamar la función para cada Xk perteneciente a la clase k
     '''
     gausiana=np.zeros(samples)
-    sigma=sigma+0.01*np.identity(features)
+    sigma=sigma+0.001*np.identity(features)
     det_s=np.linalg.det(sigma)
     inv_s=np.linalg.inv(sigma)
 
@@ -161,21 +162,31 @@ def solve(clases,features,samples1,samples2,p,mu1,mu2,sigma1,sigma2,x1,x2):
         
     return mu1,sigma1,mu2,sigma2,p,Nk1,Nk2
 
-def get_prediction(x,mu1,sigma1,mu2,sigma2,features,samples,y):
+def get_prediction(x,mu1,sigma1,mu2,sigma2,features,samples,y,ep,run_name):
     ''' 
     important:  mu1 has to be the mean of the class labeled as '0' and mu2 the mean of the labeled as '1'
     '''
-    p1=get_gaus(features,samples,sigma1,mu1,x)
-    p2=get_gaus(features,samples,sigma2,mu2,x)
-    stak=np.vstack((p1,p2))
-    y_hat=np.argmax(stak,axis=0)
-    #TP = sum(y_hat == y)
-    #FP = sum(y_hat != y)
-    precision=metrics.precision(y,y_hat)
-    accuracy=metrics.accuracy(y,y_hat)
-    recall=metrics.recall(y,y_hat)
-    #precision=(TP/(TP+FP))
-    print('La precision, accuracy y recall',precision,accuracy,recall)
+    experiment_name = "Mixture"
+    experiment = mlflow.get_experiment_by_name(experiment_name)
+    experiment_id = experiment.experiment_id
+    with mlflow.start_run(experiment_id=experiment_id,run_name=run_name):
+        mlflow.log_param('Features',features)
+        mlflow.log_param('Stop criteria',ep)
+        p1=get_gaus(features,samples,sigma1,mu1,x)
+        p2=get_gaus(features,samples,sigma2,mu2,x)
+        stak=np.vstack((p1,p2))
+        y_hat=np.argmax(stak,axis=0)
+        #TP = sum(y_hat == y)
+        #FP = sum(y_hat != y)
+        precision=metrics.precision(y,y_hat)
+        accuracy=metrics.accuracy(y,y_hat)
+        recall=metrics.recall(y,y_hat)
+        #precision=(TP/(TP+FP))
+        mlflow.log_metric('accuracy',accuracy)
+        mlflow.log_metric('precision',precision)
+        mlflow.log_metric('recall',recall)
+        mlflow.log_metric('recall',accuracy)
+        print('La precision, accuracy y recall',precision,accuracy,recall)
     return y_hat,precision
 if __name__=="__MAIN__":
     solve()

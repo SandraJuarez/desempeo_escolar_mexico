@@ -195,8 +195,49 @@ class MultilayerPerceptron():
                     break
                 #print(i,params)
                 #print(loss)
-            mlflow.log_metric('validation_loss',loss)
+            mlflow.log_metric('training_loss',loss)
+            mlflow.log_metric('precision training',precision)
+            mlflow.log_metric('recall training',recall)
+            mlflow.log_metric('validation_loss',loss_val)
             mlflow.log_metric('validation_precission',precision_val)
             mlflow.log_metric('validation_recall',precision_val)
             
         return loss,recall_list,precision_list,loss_list,precision_list_val,recall_list_val,loss_list_val
+
+
+    def modelo_boosting(self,weights,max_steps,x,y_hot,learning_rate,stop,x_v,y_v):
+            
+            precision_list=[]
+            recall_list=[]
+            loss_list=[]
+            precision_list_val=[]
+            recall_list_val=[]
+            loss_list_val=[]
+            loss=1000
+            
+            for i in range(max_steps):
+                old_loss=loss
+                loss=self.loss_function(weights,x,y_hot)
+                #print(loss)
+                
+                weights=self.update(weights, x, y_hot,learning_rate)
+                
+                if i%10==0:
+                    soft=self.forward(weights,x)
+                    soft_val=self.forward(weights,x_v)
+                    y_hat=self.prediction(soft)
+                    y_hat_val=self.prediction(soft_val)
+                    
+                    
+                    
+                if  jnp.abs(loss-old_loss)<stop:
+                    print('End of an mlp')
+                    break
+                #print(i,params)
+                #print(loss)
+            
+            return y_hat,y_hat_val
+    
+    if __name__=="__MAIN__":
+        modelo()
+        modelo_boosting()
